@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+	<style>
+	.dropbtn {
+  background-color:#4d94ff ;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+}
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color:#4d94ff;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+
+.dropdown-content a {
+  color: white;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+
+.dropdown-content a:hover {background-color:#4d94ff ;}
+
+
+.dropdown:hover .dropdown-content {display: block;}
+
+.dropdown:hover .dropbtn {background-color: #4d94ff;}
+h1{
+	color : #4d94ff;
+	}
+.nav-item {
+	color: white;
+	}
+</style>
+</head>
+<body>
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+  <ul class="navbar-nav ml-auto">
+  {% if 'email' in session %}
+        <li class="nav-item"><h5 style="color: white;">{{session['name']}}</h5></li> &nbsp&nbsp&nbsp
+        <li class="nav-item "><a class="nav-link" href="{{url_for('Logout')}}"><span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Logout"><span class="glyphicon glyphicon-log-in"></span> Logout</span></a></li>
+        {% else %}
+        <li class="nav-item"><a class="nav-link" href="{{url_for('login')}}"><span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Login"><span class="glyphicon glyphicon-log-in"></span> Login</span></a></li>
+        {% endif %}
+    </ul>
+</nav>
+<div class="jumbotron text-center">
+   <h1 align="center">WELCOME TO FOOD ZONE</h1>
+</div>
+{% with messages = get_flashed_messages() %}
+<div class="container">
+{% for each in messages %}
+<div class="alert alert-primary">
+    {{ each }}
+</div>
+{% endfor %}
+</div>
+{% endwith %}
+<div class="row content">
+</div>
+<div class="container">
+     <div class="row">
+		<h3><a href="{{url_for('Latestitems')}}">Home</a></h3>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+		<div class="dropdown">
+  <button class="dropbtn"><h4>Categories</h4></button>
+  <div class="dropdown-content">
+    <a href="{{url_for('showcategory')}}">Show Categories</a>
+    <a href="{{url_for('newcategory')}}">Add Category</a>
+  </div>
+</div>
+<!-- &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<h3><a href="{{url_for('Latestitems')}}">Latest items</a></h3> -->
+</div>
+</div>
+{% block content %}
+{% endblock %}
+</body>
+</html>
+
+
+
+
+
+

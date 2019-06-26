@@ -1,0 +1,47 @@
+{% extends 'home.html' %}
+{% block content %}
+<html>
+<head>
+	<style>
+
+  table,th,td{
+  border: 1px solid black;
+  border-style: double;
+  border-width: thick;
+}
+	th{
+	color:#ff6666;
+	font-family:"Times New Roman";
+	}
+	td{
+	color:#66b3ff;
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	}
+</style>
+</head>
+<body>
+{% if categories %}
+<table align=center  border=1 cellpadding=20 cellspacing=20>
+	<tr>
+		<th><h2>Item Name</h2></th>
+		<th><h2>Price</h2></th>
+		<th><h2>Image</h2></th>
+		<th><h2>Editing Item</h2></th>
+		<th><h2>Deleting Item</h2></th>
+	</tr>
+	{% for each in categories %}
+	<tr>
+		<td><h3>{{each.item_name}}</h3></td>
+		<td><h3>{{each.item_price}}</h3></td>
+		<td><h3><img src="{{each.item_image}}" width=200 height=100></img></h3></td>
+		<td align=center><a href="{{url_for('edititem',categoryid=each.fooditems_id,itemid=each.item_id)}}"><button>Edit Item</a></button>
+			<td align=center><a href="{{url_for('deleteitem',categoryid=each.fooditems_id,itemid=each.item_id)}}"><button>Delete Item</a></button>
+	</tr>
+	{% endfor %}
+</table>
+	{% else %}
+		no items found
+{% endif %}
+{% endblock %}
+</body>
+</html>

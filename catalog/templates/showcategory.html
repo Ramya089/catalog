@@ -1,0 +1,42 @@
+{% extends "home.html" %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <style>
+  td{
+	color:#66b3ff;
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	}
+
+</style>
+</head>
+<body>
+{% if categories %}
+<table border=1 cellpadding=20 cellspacing=20>
+	<tr>
+	{% for each in categories %}
+	 <td><a href="{{url_for('showitems',category_id=each.fooditems_id)}}"><h3>{{each.fooditems_id}}</h3></a></td>
+	 <td><a href="{{url_for('showitems',category_id=each.fooditems_id)}}"><h3>{{each.fooditems_name}}</h3></a></td>
+	 <td><a href="{{url_for('newitem',categoryid=each.fooditems_id)}}"><button class="button button4">ADD ITEM</button></a></td>
+    <td colspan=2><a href="{{url_for('editcategory',category_id=each.fooditems_id)}}"><button>Edit Category</button></a></td>
+     <td><a href="{{url_for('deletecategory',category_id=each.fooditems_id)}}"><button>Delete Category</button></a></td>
+ </tr>
+ {% endfor %}
+	</table>
+	{% else %}
+		no items found
+{% endif %}
+{% endblock %}
+</body>
+</html>
+
+
+

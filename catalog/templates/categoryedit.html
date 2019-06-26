@@ -1,0 +1,20 @@
+{% extends "home.html" %}
+{% block content %}
+<html>
+<head>
+</head>
+<body>
+<div class="container">
+	<h1>Edit Category</h1>
+	<form method="post" >
+    <div class="form-group">
+    	<label>Category Name:</label>
+    	<input type="text" name='category_name' value='{{fooditems_name}}' required>
+    </div>
+		<a href="{{url_for('editcategory',category_id=id_category)}}"><button type="submit" class="btn btn-primary id="button1">Edit</button></a>
+</form>
+<a href="{{url_for('home')}}"><button type="cancel" class="btn btn-primary id="button2">Cancel</button></a>
+</div>
+{% endblock %}
+</body>
+</html>

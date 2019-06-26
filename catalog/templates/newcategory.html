@@ -1,0 +1,36 @@
+{% extends "home.html" %}
+{% block content %}
+<html>
+<head>
+	<style>
+
+#button2{
+	position:absolute;
+width: 300px;
+height: 40px;
+left:50px;
+}
+form{
+	float:middle;
+}
+
+</style>
+</head>
+<body>
+
+
+ <div class="container">
+  			<h1>ADD CATEGORY</h1>
+	<form method="post" >
+    <div class="form-group">
+    	<label>Category Name:</label>
+		<input type='text' value=''name='category_name' required>
+	</div>
+	<a href="{{url_for('newcategory')}}"><button type="submit" class="btn btn-primary id="button1">Add</button></a>
+</form>
+<a href="{{url_for('home')}}"><button type="cancel" class="btn btn-primary id="button2">Cancel</button></a>
+</div>
+{% endblock %}
+</body>
+</html>
+	

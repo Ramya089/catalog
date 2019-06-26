@@ -1,0 +1,30 @@
+{% extends "home.html" %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Item Details</title>  
+</head>
+<body>
+<div class="container">
+  <h2>Edit {{iname}}</h2>
+  <form method="post" action="">
+    <div class="form-group">
+      <label>Name:</label>
+      <input type='text' value='{{iname}}' name=iname required>
+    </div>
+    <div class="form-group">
+      <label>Image:</label>
+	  <input type='text' value="{{iimage}}" name=iimage required>
+    </div>
+	<div class="form-group">
+      <label>Price:</label>
+	  <input type='text' value="{{iprice}}" name=iprice required>
+    </div>
+    <button type="submit" class="btn btn-primary">Edit</button>
+  </form>
+    <a href="{{url_for('home')}}"><button type="cancel" class="btn btn-primary">Cancel</button></a>
+</div>
+{% endblock %}
+</body>
+</html>

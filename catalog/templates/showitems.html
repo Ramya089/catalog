@@ -1,0 +1,66 @@
+{% extends 'home.html' %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <style>
+  table,th,td{
+  border: 1px solid black;
+  border-style: double;
+  border-width: thick;
+}
+	th{
+	color:#ff6666;
+	font-family:"Times New Roman";
+	}
+	td{
+	color:#66b3ff;
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	}
+.img {
+    position: relative;
+    float: left;
+    width:  "100";
+    height: "100";
+    background-position: 50% 50%;
+    background-repeat:   no-repeat;
+    background-size:     cover;
+	 object-fit:scale-down;
+}
+
+</style>
+</head>
+<body>
+{% if categories %}
+<table align=center  border=1 cellpadding=20 cellspacing=20>
+<tr>
+<th><h2>Item Name</h2></th>
+<th><h2>Price</h2></th>
+<th><h2>Image</h2></th>
+
+<th><h2>Editing Item</h2></th>
+<th><h2>Deleting Item</h2></th>
+{% for each in categories %}
+		<tr>
+		  <td><h3>{{each.item_name}}</h3></td>
+			<td><h3>{{each.item_price}}</h3></td>
+			<td><h3><img src="{{each.item_image}}" width=200 height=100></img></h3></td>
+			<td align=center><a href="{{url_for('edititem',categoryid=each.fooditems_id,itemid=each.item_id)}}"><button>Edit Item</a></button>
+			<td align=center><a href="{{url_for('deleteitem',categoryid=each.fooditems_id,itemid=each.item_id)}}"><button>Delete Item</a></button>
+		</tr>
+{% endfor %}
+</table>
+	{% else %}
+		no items found
+{% endif %}
+{% endblock %}
+</body>
+</html>
